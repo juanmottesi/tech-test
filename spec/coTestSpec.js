@@ -54,3 +54,54 @@ describe("Low Coverage", function() {
     expect(products[0].price).equal(0);
   });
 });
+
+describe("Full Coverage", function () {
+
+  it("should be up price by 1 when sellIn > 0", function () {
+    const coTest = new CarInsurance([new Product("Full Coverage", 1, 10)]);
+    const products = coTest.updatePrice();
+    expect(products[0].name).equal("Full Coverage");
+    expect(products[0].sellIn).equal(0);
+    expect(products[0].price).equal(11);
+  });
+
+  it("should be up price by 2 when sellIn = 0", function () {
+    const coTest = new CarInsurance([new Product("Full Coverage", 0, 10)]);
+    const products = coTest.updatePrice();
+    expect(products[0].name).equal("Full Coverage");
+    expect(products[0].sellIn).equal(-1);
+    expect(products[0].price).equal(12);
+  });
+
+  it("should be up price by 2 when sellIn < 0", function () {
+    const coTest = new CarInsurance([new Product("Full Coverage", -1, 10)]);
+    const products = coTest.updatePrice();
+    expect(products[0].name).equal("Full Coverage");
+    expect(products[0].sellIn).equal(-2);
+    expect(products[0].price).equal(12);
+  });
+
+  it("should price never exceed 50 when sellIn > 0", function () {
+    const coTest = new CarInsurance([new Product("Full Coverage", 1, 50)]);
+    const products = coTest.updatePrice();
+    expect(products[0].name).equal("Full Coverage");
+    expect(products[0].sellIn).equal(0);
+    expect(products[0].price).equal(50);
+  });
+
+  it("should price never exceed 50 when sellIn = 0", function () {
+    const coTest = new CarInsurance([new Product("Full Coverage", 0, 50)]);
+    const products = coTest.updatePrice();
+    expect(products[0].name).equal("Full Coverage");
+    expect(products[0].sellIn).equal(-1);
+    expect(products[0].price).equal(50);
+  });
+
+  it("should price never exceed 50 when sellIn < 0", function () {
+    const coTest = new CarInsurance([new Product("Full Coverage", -1, 50)]);
+    const products = coTest.updatePrice();
+    expect(products[0].name).equal("Full Coverage");
+    expect(products[0].sellIn).equal(-2);
+    expect(products[0].price).equal(50);
+  });
+});
