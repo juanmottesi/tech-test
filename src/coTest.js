@@ -2,7 +2,8 @@ const {
   EvaluatorFullCoverage,
   EvaluatorMegaCoverage,
   EvaluatorSpecialFullCoverage,
-  EvaluatorDefault
+  EvaluatorDefault,
+  EvaluatorSuperSale,
 } = require("./Evaluators");
 
 class Product {
@@ -20,6 +21,7 @@ class CarInsurance {
       'Full Coverage': new EvaluatorFullCoverage(),
       'Mega Coverage': new EvaluatorMegaCoverage(),
       'Special Full Coverage': new EvaluatorSpecialFullCoverage(),
+      'Super Sale': new EvaluatorSuperSale(),
     };
     this.evaluatorDefault = new EvaluatorDefault();
   }

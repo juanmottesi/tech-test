@@ -49,9 +49,17 @@ class EvaluatorDefault extends Evaluator {
   ]
 }
 
+class EvaluatorSuperSale extends Evaluator {
+  conditions = [
+    new ConditionDowncreasePriceWhenSellInLessOrEqualThan(4, 0),
+    new ConditionDowncreasePriceWhenSellInGreaterThan(2, 0),
+  ]
+}
+
 module.exports = {
   EvaluatorFullCoverage,
   EvaluatorMegaCoverage,
   EvaluatorSpecialFullCoverage,
   EvaluatorDefault,
+  EvaluatorSuperSale,
 };

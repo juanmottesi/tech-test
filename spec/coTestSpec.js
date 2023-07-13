@@ -216,3 +216,54 @@ describe("Special Full Coverage", function () {
   });
 
 });
+
+describe("Low Coverage", function () {
+
+  it("should be down price by 2 when sellIn > 0", function () {
+    const coTest = new CarInsurance([new Product("Super Sale", 1, 10)]);
+    const products = coTest.updatePrice();
+    expect(products[0].name).equal("Super Sale");
+    expect(products[0].sellIn).equal(0);
+    expect(products[0].price).equal(8);
+  });
+
+  it("should be down price by 4 when sellIn = 0", function () {
+    const coTest = new CarInsurance([new Product("Super Sale", 0, 10)]);
+    const products = coTest.updatePrice();
+    expect(products[0].name).equal("Super Sale");
+    expect(products[0].sellIn).equal(-1);
+    expect(products[0].price).equal(6);
+  });
+
+  it("should be down price by 4 when sellIn < 0", function () {
+    const coTest = new CarInsurance([new Product("Super Sale", -1, 10)]);
+    const products = coTest.updatePrice();
+    expect(products[0].name).equal("Super Sale");
+    expect(products[0].sellIn).equal(-2);
+    expect(products[0].price).equal(6);
+  });
+
+  it("should price never go negative when sellIn > 0", function () {
+    const coTest = new CarInsurance([new Product("Super Sale", 1, 0)]);
+    const products = coTest.updatePrice();
+    expect(products[0].name).equal("Super Sale");
+    expect(products[0].sellIn).equal(0);
+    expect(products[0].price).equal(0);
+  });
+
+  it("should price never go negative when sellIn = 0", function () {
+    const coTest = new CarInsurance([new Product("Super Sale", 0, 0)]);
+    const products = coTest.updatePrice();
+    expect(products[0].name).equal("Super Sale");
+    expect(products[0].sellIn).equal(-1);
+    expect(products[0].price).equal(0);
+  });
+
+  it("should price never go negative when sellIn < 0", function () {
+    const coTest = new CarInsurance([new Product("Super Sale", -1, 0)]);
+    const products = coTest.updatePrice();
+    expect(products[0].name).equal("Super Sale");
+    expect(products[0].sellIn).equal(-2);
+    expect(products[0].price).equal(0);
+  });
+});
