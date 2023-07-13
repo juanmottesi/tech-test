@@ -105,3 +105,15 @@ describe("Full Coverage", function () {
     expect(products[0].price).equal(50);
   });
 });
+
+describe("Mega Coverage", function () {
+
+  it("should be price = 80 and the same sellIn", function () {
+    const coTest = new CarInsurance([new Product("Mega Coverage", 1, 80)]);
+    const products = coTest.updatePrice();
+    expect(products[0].name).equal("Mega Coverage");
+    expect(products[0].sellIn).equal(1);
+    expect(products[0].price).equal(80);
+  });
+
+});
